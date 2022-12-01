@@ -24,7 +24,7 @@ function App() {
     setErrorMessage(message);
     setTimeout(() => {
       setErrorMessage(null);
-    }, 3000);
+    }, 6000);
   };
 
   const logout = () => {
@@ -46,15 +46,23 @@ function App() {
   return (
     <>
       <Notify errorMessage={errorMessage} />
-      <button
-        onClick={() => {
-          setPage('persons');
-        }}
-      >
-        persons
-      </button>
-      <button onClick={() => setPage('amici')}>amici</button>
-      <button onClick={logout}>logout</button>
+      <div id="navbar">
+        <button
+          style={{ marginRight: 10 }}
+          onClick={() => {
+            setPage('persons');
+          }}
+        >
+          tutti i contatti
+        </button>
+        <button style={{ marginRight: 10 }} onClick={() => setPage('amici')}>
+          amici
+        </button>
+        <button style={{ marginRight: 10 }} onClick={() => setPage('amici')}>
+          lavoro
+        </button>
+        <button onClick={logout}>logout</button>
+      </div>
       <Persons
         show={page === 'persons'}
         persons={result.data.allPersons}
@@ -63,7 +71,11 @@ function App() {
         page={page}
       />
 
-      <Friends show={page === 'amici'} persons={result.data.allPersons} />
+      <Friends
+        setPage={setPage}
+        show={page === 'amici'}
+        persons={result.data.allPersons}
+      />
     </>
   );
 }

@@ -43,8 +43,8 @@ const PersonForm = ({ setError }) => {
   };
 
   return (
-    <div>
-      <h2>create new</h2>
+    <div id="personForm">
+      <h2>Inserisci nuovo contatto</h2>
       <form onSubmit={submit}>
         <div>
           name{' '}

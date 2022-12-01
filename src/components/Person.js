@@ -1,7 +1,15 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { ALL_PERSONS, CREATE_FRIEND, REMOVE_FRIEND, USER } from './../queries';
+import PhoneForm from './PhoneForm';
 
-const Person = ({ persons, person, setNameToSearch, setPage, show }) => {
+const Person = ({
+  persons,
+  person,
+  setNameToSearch,
+  setPage,
+  show,
+  setError,
+}) => {
   // CREAZIONE AMICO
   const [createFriend, result] = useMutation(CREATE_FRIEND, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
@@ -44,23 +52,43 @@ const Person = ({ persons, person, setNameToSearch, setPage, show }) => {
 
   if (!show) return null;
   return (
-    <>
-      <h2>name: {person.name}</h2>
-      <div>phone: {person.phone}</div>
+    <div id="person">
       <div>
-        address: {person.address.street}, {person.address.city}
+        <h2>name: {person.name}</h2>
+        <div>phone: {person.phone}</div>
+        <div>
+          address: {person.address.street}, {person.address.city}
+        </div>
+        <div
+          style={{
+            paddingTop: '20px',
+            marginTop: '20px',
+          }}
+        >
+          {isfriend ? (
+            <button
+              style={{ backgroundColor: 'green' }}
+              onClick={() => deleteFriend(person.name)}
+            >
+              AMICO
+            </button>
+          ) : (
+            <button onClick={() => addFriend(person.name)}>AMICI</button>
+          )}
+          {isfriend ? (
+            <button onClick={() => deleteFriend(person.name)}>LAVORO</button>
+          ) : (
+            <button onClick={() => addFriend(person.name)}>LAVORO</button>
+          )}
+        </div>
       </div>
-      <button onClick={() => setNameToSearch(null)}>chiudi</button>
-      {isfriend ? (
-        <button onClick={() => deleteFriend(person.name)}>
-          non è più amico
-        </button>
-      ) : (
-        <button onClick={() => addFriend(person.name)}>
-          aggiungi agli amici
-        </button>
-      )}
-    </>
+      <div>
+        <PhoneForm setError={setError} name={person.name} />
+      </div>
+      <div>
+        <button onClick={() => setNameToSearch(null)}>chiudi</button>
+      </div>
+    </div>
   );
 };
 

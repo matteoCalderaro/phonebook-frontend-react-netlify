@@ -1,12 +1,14 @@
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import { EDIT_NUMBER } from '../queries';
+import { EDIT_NUMBER, USER } from '../queries';
+import { ALL_PERSONS } from './../queries';
 
-const PhoneForm = ({ setError }) => {
-  const [name, setName] = useState('');
+const PhoneForm = ({ setError, name }) => {
+  const [newName, setNewName] = useState('');
   const [phone, setPhone] = useState('');
 
   const [changeNumber, result] = useMutation(EDIT_NUMBER, {
+    refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
     onError: error => {
       setError(error.graphQLErrors[0].message);
     },
@@ -16,9 +18,9 @@ const PhoneForm = ({ setError }) => {
   const submit = event => {
     event.preventDefault();
 
-    changeNumber({ variables: { name, phone } });
+    changeNumber({ variables: { name, newName, phone } });
 
-    setName('');
+    //setName('');
     setPhone('');
   };
   // ???????????
@@ -30,14 +32,23 @@ const PhoneForm = ({ setError }) => {
   // }, [result.data]);
 
   return (
-    <div>
-      <h2>change number</h2>
+    <div
+      style={{
+        margin: '20px 0px 0px',
+        paddingBottom: '5px',
+        borderTop: '1px solid black',
+      }}
+    >
+      <h4>Modifica dati contatto</h4>
       <form onSubmit={submit}>
+        {/* <div>
+          name <input value={name} />
+        </div> */}
         <div>
-          name{' '}
+          newName{' '}
           <input
-            value={name}
-            onChange={({ target }) => setName(target.value)}
+            value={newName}
+            onChange={({ target }) => setNewName(target.value)}
           />
         </div>
         <div>
@@ -47,7 +58,9 @@ const PhoneForm = ({ setError }) => {
             onChange={({ target }) => setPhone(target.value)}
           />
         </div>
-        <button type="submit">change!</button>
+        <button style={{ marginTop: '20px' }} type="submit">
+          salva
+        </button>
       </form>
     </div>
   );

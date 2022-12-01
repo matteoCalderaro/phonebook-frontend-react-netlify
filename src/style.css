@@ -1,0 +1,46 @@
+#navbar{
+  position: fixed;
+  background-color: blue;
+  z-index: 50000;
+  width: 100%;
+  padding: 10px;
+  top:0;
+  left:0
+}
+#personForm{
+  position: fixed;
+  background-color: lightgray;
+  z-index: 1000;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  left:0
+}
+#personsList{
+  padding: 10px;
+  margin-top: 230px;
+  position: absolute;
+  width:450px; 
+  left:0
+}
+#friendsList{
+  position:absolute;
+  padding: 10px;
+  width: max-content;
+  margin-top: 50px;
+}
+#person{
+  position: absolute;
+  margin-top: 50px;
+  padding: 10px;
+  width: max-content
+}
+#notify{
+  margin-top: 50px;
+}
+#contact{
+  padding-bottom: 8px;
+display: flex;
+justify-content: space-between;
+align-items: end;
+}

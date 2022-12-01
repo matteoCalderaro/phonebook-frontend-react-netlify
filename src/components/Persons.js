@@ -23,27 +23,63 @@ const Persons = ({ persons, setError, show, setPage, page }) => {
         person={person}
         setNameToSearch={setNameToSearch}
         setPage={setPage}
+        setError={setError}
         show={show}
         page={page}
       />
     );
   }
+
   if (!show) {
     return null;
   }
+  const personsSorted = persons.sort((a, b) =>
+    a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+  );
+  console.log(personsSorted);
   return (
     <>
-      <div>
-        {persons.map(p => (
-          <div key={p.id}>
-            {p.name}
-            {p.phone}
-            <button onClick={() => setNameToSearch(p.name)}>search</button>
+      <PersonForm setError={setError} />
+      <div id="personsList">
+        <h2>Contatti esistenti</h2>
+        {personsSorted.map((p, index) => (
+          <div
+            id="contact"
+            key={index}
+            style={{
+              borderBottom: '1px solid',
+              paddingBottom: '8px',
+            }}
+          >
+            <div>
+              <h3
+                style={{
+                  marginBottom: '0',
+                  marginTop: '8px',
+                }}
+              >
+                name: {p.name}
+              </h3>
+
+              <div>phone: {p.phone ? p.phone : 'nessun telefono'}</div>
+              <div>
+                address: {p.address.street}, {p.address.city}
+              </div>
+            </div>
+
+            <div>
+              <button
+                style={{ marginRight: 5 }}
+                onClick={() => setNameToSearch(p.name)}
+              >
+                modifica
+              </button>
+              <button onClick={() => setNameToSearch(p.name)}>elimina</button>
+            </div>
           </div>
         ))}
       </div>
-      <PersonForm setError={setError} />
-      <PhoneForm setError={setError} />
+      {/* <PhoneForm setError={setError} /> */}
     </>
   );
 };

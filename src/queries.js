@@ -6,6 +6,10 @@ export const ALL_PERSONS = gql`
       name
       phone
       id
+      address {
+        street
+        city
+      }
     }
   }
 `;
@@ -93,9 +97,10 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const EDIT_NUMBER = gql`
-  mutation changeNumber($name: String!, $phone: String!) {
-    editNumber(name: $name, phone: $phone) {
+  mutation changeNumber($name: String!, $newName: String!, $phone: String!) {
+    editNumber(name: $name, newName: $newName, phone: $phone) {
       name
+
       phone
       id
       address {

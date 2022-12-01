@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { setContext } from '@apollo/client/link/context';
+import './style.css';
 
 import {
   ApolloClient,
