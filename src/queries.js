@@ -10,6 +10,22 @@ export const ALL_PERSONS = gql`
   }
 `;
 
+export const USER = gql`
+  query {
+    me {
+      username
+      friends {
+        name
+        phone
+        address {
+          street
+          city
+        }
+      }
+    }
+  }
+`;
+
 export const FIND_PERSON = gql`
   query findPersonByName($nameToSearch: String!) {
     findPerson(name: $nameToSearch) {
@@ -38,6 +54,23 @@ export const CREATE_PERSON = gql`
       address {
         street
         city
+      }
+    }
+  }
+`;
+export const CREATE_FRIEND = gql`
+  mutation createFriend($name: String!) {
+    addAsFriend(name: $name) {
+      username
+      id
+      friends {
+        name
+        phone
+        id
+        address {
+          street
+          city
+        }
       }
     }
   }

@@ -1,15 +1,17 @@
 import { useApolloClient, useQuery } from '@apollo/client';
-import PersonForm from './components/PersonForm';
+//import PersonForm from './components/PersonForm';
 import Persons from './components/Persons';
 import { ALL_PERSONS } from './queries';
 import { useState } from 'react';
 import Notify from './components/Notify';
-import PhoneForm from './components/PhoneForm';
+//import PhoneForm from './components/PhoneForm';
 import LoginForm from './components/LoginForm';
+import Friends from './components/Friends';
 
 function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [token, setToken] = useState(null);
+  const [page, setPage] = useState('persons');
   const client = useApolloClient();
 
   const result = useQuery(ALL_PERSONS);
@@ -44,10 +46,16 @@ function App() {
   return (
     <>
       <Notify errorMessage={errorMessage} />
+      <button onClick={() => setPage('persons')}>persons</button>
+      <button onClick={() => setPage('amici')}>amici</button>
       <button onClick={logout}>logout</button>
-      <Persons persons={result.data.allPersons} />
-      <PersonForm setError={notify} />
-      <PhoneForm setError={notify} />
+      <Persons
+        show={page === 'persons'}
+        persons={result.data.allPersons}
+        setError={notify}
+      />
+
+      <Friends show={page === 'amici'} persons={result.data.allPersons} />
     </>
   );
 }

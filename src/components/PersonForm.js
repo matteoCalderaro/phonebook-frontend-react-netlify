@@ -14,6 +14,7 @@ const PersonForm = ({ setError }) => {
     onError: error => {
       setError(error.graphQLErrors[0].message);
     },
+    //update cache concatenating the result of the useMutation
     update: (cache, response) => {
       cache.updateQuery({ query: ALL_PERSONS }, ({ allPersons }) => {
         return {
@@ -25,6 +26,7 @@ const PersonForm = ({ setError }) => {
 
   const submit = async event => {
     event.preventDefault();
+
     createPerson({
       variables: {
         name,
@@ -33,6 +35,7 @@ const PersonForm = ({ setError }) => {
         phone: phone.length > 0 ? phone : undefined,
       },
     });
+
     setName('');
     setPhone('');
     setStreet('');

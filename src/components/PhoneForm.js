@@ -11,21 +11,23 @@ const PhoneForm = ({ setError }) => {
       setError(error.graphQLErrors[0].message);
     },
   });
-  console.log(result.data);
+  //console.log(result.data);
 
   const submit = event => {
     event.preventDefault();
+
     changeNumber({ variables: { name, phone } });
+
     setName('');
     setPhone('');
   };
-
-  useEffect(() => {
-    if (result.data && result.data.editNumber === null) {
-      setError('person not found');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result.data]);
+  // ???????????
+  // useEffect(() => {
+  //   if (result.data && result.data.editNumber === null) {
+  //     setError('person not found');
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [result.data]);
 
   return (
     <div>
