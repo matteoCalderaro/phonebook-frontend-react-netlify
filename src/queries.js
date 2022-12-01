@@ -75,6 +75,22 @@ export const CREATE_FRIEND = gql`
     }
   }
 `;
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($name: String!) {
+    removeAsFriend(name: $name) {
+      username
+      friends {
+        name
+        phone
+        id
+        address {
+          street
+          city
+        }
+      }
+    }
+  }
+`;
 
 export const EDIT_NUMBER = gql`
   mutation changeNumber($name: String!, $phone: String!) {

@@ -47,7 +47,7 @@ const PhoneForm = ({ setError }) => {
             onChange={({ target }) => setPhone(target.value)}
           />
         </div>
-        <button type="submit">add!</button>
+        <button type="submit">change!</button>
       </form>
     </div>
   );
