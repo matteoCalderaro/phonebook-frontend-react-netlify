@@ -30,18 +30,19 @@ const LoginForm = ({ setError, setToken }) => {
     <div>
       <form onSubmit={submit}>
         <div>
-          username{' '}
+          <div>username</div>
           <input
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
         </div>
         <div>
-          password{' '}
+          <div>password</div>
           <input
             type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
+            style={{ marginBottom: 15 }}
           />
         </div>
         <button type="submit">login</button>

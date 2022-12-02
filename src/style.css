@@ -5,12 +5,29 @@ body {
   margin-top:0;
 }
 #root{
-  max-width:500px;
+  max-width:480px;
   margin:auto;
   /* box-shadow: 5px 6px 3px -2px rgba(13,13,11,0.27); */
- 
-
 }
+#loginContainer {
+  background:linear-gradient(75deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+#loginForm {
+  background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  top: 100px;
+  position: fixed;
+  padding: 20px 50px;
+}
+  
+
+#loginForm h2{
+  margin-top:0;
+  margin-bottom:10px
+}
+
 #navbar{
   position: sticky;
   /* background: linear-gradient(135deg, #FEFFFF 0%, #EDF1F3 50%, #FDFCFD 100%); */
@@ -18,27 +35,41 @@ body {
   z-index: 50000;
   padding: 10px;
   top:0;
+  display: flex;
+  justify-content: space-between;
+}
+#navbarLogin{
+  position: sticky;
+  /* background: linear-gradient(135deg, #FEFFFF 0%, #EDF1F3 50%, #FDFCFD 100%); */
+  background-color: black;
+  z-index: 50000;
+  padding: 10px;
+  top:0;
+  display: flex;
+  justify-content: center;
+  color:white
+
 }
 /************* PERSON FORM **********/
-#personForm{
+#mainForm{
   position: sticky;
   background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
   z-index: 1000;
-  top: 43px;
+  top: 40px;
   padding: 10px;
   left:0
 }
-#personForm > h2 {
+#mainForm > h2 {
   margin-top:0
 }
-#personForm  form  div > div {
+#mainForm  form  div > div {
   display:flex;
   justify-content: space-between
 }
-#personForm  form  {
+#mainForm  form  {
   width: 240px;
 }
-#personForm  input  {
+#mainForm  input  {
   width: 180px;
   margin-bottom:3px
 }
@@ -47,25 +78,76 @@ body {
   padding: 10px;
   position: relative;
   left:0;
-  background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  background: linear-gradient(75deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  height: 100vh;
+  
 }
-#personsList .buttons button{
+#personsList #buttons button{
   margin:0 5px;
   width:60px
 }
+#personsList #contact{
+  border-bottom: dotted 1px #0b0a0a;
+  padding-bottom: 10px;
+}
+#personsList #contact h3{
+  margin-bottom: 0;
+  margin-top: 8px
+}
 
+/************* PERSON LIST **********/
 #friendsList{
-  position:absolute;
+  position:relative;
   padding: 10px;
-  width: max-content;
-  top: 50px;
+  background:linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  height:100vh
 }
-#person{
-  position: absolute;
-  margin-top: 50px;
+
+/************* PERSON  DETAIL**********/
+#personDetailContainer{
+  /* height: 100vh;
+  position: fixed;
+  width: 500px; */
+}
+
+#personDetailBox{
   padding: 10px;
-  width: max-content
+  background:linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  height:100vh;
 }
+#personDetailTab1 {
+  border-bottom: 1px dotted rgb(11, 10, 10);
+}
+#personDetailTab1 #buttons {
+  padding: 20px 0;
+}
+#personDetailTab1 #buttons span{
+  margin-right: 10px;
+  cursor: pointer;
+}
+#personDetailTab2 {
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom: 1px dotted rgb(11, 10, 10);
+}
+#personDetailTab2 form div{
+  display:flex;
+  width: 260px;
+  justify-content: space-between;
+  margin-bottom:3px
+}
+#personDetailTab2 form div input{
+  width: 170px;
+}
+
+#closeButton{
+  padding:3px 50px;
+  font-size: 18px
+}
+
+
+
+
 #notify{
   /* margin-top: 50px; */
 }
@@ -80,10 +162,11 @@ align-items: end;
 
 
 @media screen and (max-width: 450px) {
-  #personsList .buttons{
+  #personsList #buttons{
     display: flex;
     flex-direction:column;
     height: 52px;
     justify-content: space-between;
   }
+
 }

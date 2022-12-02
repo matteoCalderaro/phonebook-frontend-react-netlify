@@ -24,7 +24,7 @@ const Friends = ({ persons, show, setPage }) => {
         <div
           key={index}
           style={{
-            borderBottom: '1px solid',
+            borderBottom: 'dotted 1px #0b0a0a',
             paddingBottom: '8px',
           }}
         >
@@ -37,9 +37,8 @@ const Friends = ({ persons, show, setPage }) => {
             name: {a.name}
           </h3>
           <div>phone: {a.phone}</div>
-          <div>
-            address: {a.address.street}, {a.address.city}
-          </div>
+          <div>street: {a.address.street}</div>
+          <div>city: {a.address.city}</div>
           {/* <button onClick={() => setPage('persons')}>boo</button> */}
         </div>
       ))}

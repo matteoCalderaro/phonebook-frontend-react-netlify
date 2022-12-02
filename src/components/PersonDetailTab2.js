@@ -1,9 +1,9 @@
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
-import { ALL_PERSONS } from './../queries';
+import { ALL_PERSONS } from '../queries';
 
-const PhoneForm = ({ setError, name }) => {
+const PersonDetailTab2 = ({ setError, name }) => {
   const [newName, setNewName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -13,7 +13,6 @@ const PhoneForm = ({ setError, name }) => {
       setError(error.graphQLErrors[0].message);
     },
   });
-  //console.log(result.data);
 
   const submit = event => {
     event.preventDefault();
@@ -32,13 +31,7 @@ const PhoneForm = ({ setError, name }) => {
   // }, [result.data]);
 
   return (
-    <div
-      style={{
-        margin: '20px 0px 0px',
-        paddingBottom: '5px',
-        borderTop: '1px solid black',
-      }}
-    >
+    <div id="personDetailTab2">
       <h4>Modifica dati contatto</h4>
       <form onSubmit={submit}>
         {/* <div>
@@ -66,4 +59,4 @@ const PhoneForm = ({ setError, name }) => {
   );
 };
 
-export default PhoneForm;
+export default PersonDetailTab2;

@@ -1,6 +1,6 @@
 import { useApolloClient, useQuery } from '@apollo/client';
 //import PersonForm from './components/PersonForm';
-import Persons from './components/Persons';
+import PersonsList from './components/PersonsList';
 import { ALL_PERSONS, USER } from './queries';
 import { useState, useEffect } from 'react';
 import Notify from './components/Notify';
@@ -36,11 +36,16 @@ function App() {
 
   if (!token) {
     return (
-      <div>
-        <Notify errorMessage={errorMessage} />
-        <h2>Login</h2>
-        <LoginForm setToken={setToken} setError={notify} />
-      </div>
+      <>
+        <div id="navbarLogin">Phonebook 2022</div>
+        <div id="loginContainer">
+          <div id="loginForm">
+            <Notify errorMessage={errorMessage} />
+            <h2>Login</h2>
+            <LoginForm setToken={setToken} setError={notify} />
+          </div>
+        </div>
+      </>
     );
   }
 
@@ -48,7 +53,7 @@ function App() {
     <>
       <Navbar setPage={setPage} logout={logout} page={page} />
       <Notify errorMessage={errorMessage} />
-      <Persons
+      <PersonsList
         show={page === 'persons'}
         persons={result.data.allPersons}
         setError={notify}

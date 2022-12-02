@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { CREATE_PERSON, ALL_PERSONS } from '../queries';
 
-const PersonForm = ({ setError }) => {
+const MainForm = ({ setError }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [street, setStreet] = useState('');
@@ -43,7 +43,7 @@ const PersonForm = ({ setError }) => {
   };
 
   return (
-    <div id="personForm">
+    <div id="mainForm">
       <h2>Inserisci nuovo contatto</h2>
       <form onSubmit={submit}>
         <div>
@@ -84,4 +84,4 @@ const PersonForm = ({ setError }) => {
   );
 };
 
-export default PersonForm;
+export default MainForm;
