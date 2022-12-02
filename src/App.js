@@ -1,8 +1,8 @@
 import { useApolloClient, useQuery } from '@apollo/client';
 //import PersonForm from './components/PersonForm';
 import PersonsList from './components/PersonsList';
-import { ALL_PERSONS, USER } from './queries';
-import { useState, useEffect } from 'react';
+import { ALL_PERSONS } from './queries';
+import { useState } from 'react';
 import Notify from './components/Notify';
 //import PhoneForm from './components/PhoneForm';
 import LoginForm from './components/LoginForm';

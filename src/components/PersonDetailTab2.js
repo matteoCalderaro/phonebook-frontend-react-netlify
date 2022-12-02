@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
 import { ALL_PERSONS } from '../queries';
 
@@ -7,7 +7,7 @@ const PersonDetailTab2 = ({ setError, name }) => {
   const [newName, setNewName] = useState('');
   const [phone, setPhone] = useState('');
 
-  const [changeNumber, result] = useMutation(EDIT_NUMBER, {
+  const [changeNumber] = useMutation(EDIT_NUMBER, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
     onError: error => {
       setError(error.graphQLErrors[0].message);
