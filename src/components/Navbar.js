@@ -25,7 +25,7 @@ const Navbar = ({ setPage, logout, page }) => {
             setPage('persons');
           }}
         >
-          tutti i contatti
+          contatti
         </span>
         <span
           style={page === 'amici' ? isSelected : isNotSelected}

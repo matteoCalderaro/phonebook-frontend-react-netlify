@@ -36,7 +36,7 @@ const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
   const amiciAttuali = amici.data.me.friends.map(a => a.name);
   console.log('amici attuali', amiciAttuali);
 
-  // VERICA SE LA PERSONA E' AMICA----
+  // VERIFICA SE LA PERSONA E' AMICA----
   console.log('persona attuale', person.name);
   const isFriend = amiciAttuali.includes(person.name);
   console.log('è amico?', isFriend);
@@ -54,7 +54,7 @@ const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
         <PersonDetailTab2 setError={setError} name={person.name} />
 
         <button id="closeButton" onClick={() => setNameToSearch(null)}>
-          chiudi
+          torna ai contatti
         </button>
       </div>
     </div>

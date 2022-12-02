@@ -11,11 +11,13 @@ const PersonDetailTab1 = ({ person, isFriend, deleteFriend, addFriend }) => {
     borderRadius: '5px',
     padding: '0 5px',
     background: 'white',
-    color: 'lightgray',
+    color: 'gray',
+    border: '1px solid gray',
   };
   return (
     <div id="personDetailTab1">
-      <h2>name: {person.name}</h2>
+      <h2>Modifica</h2>
+      <h3 style={{ marginBottom: 0 }}>name: {person.name}</h3>
       <div>phone: {person.phone}</div>
       <div>street: {person.address.street}</div>
       <div>city: {person.address.city}</div>

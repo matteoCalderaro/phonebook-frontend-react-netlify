@@ -140,11 +140,19 @@ body {
 #personDetailTab2 form div input{
   width: 170px;
 }
-
+// BUTTONS ----------------
 #closeButton{
   padding:3px 50px;
   font-size: 18px
 }
+#buttonNewContact{
+  position: fixed;
+  right: 30px;
+  background:yellow;
+  padding:10px
+}
+
+
 
 
 
