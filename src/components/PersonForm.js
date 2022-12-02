@@ -47,34 +47,38 @@ const PersonForm = ({ setError }) => {
       <h2>Inserisci nuovo contatto</h2>
       <form onSubmit={submit}>
         <div>
-          name{' '}
-          <input
-            value={name}
-            onChange={({ target }) => setName(target.value)}
-          />
+          <div>
+            <div>name</div>
+            <input
+              value={name}
+              onChange={({ target }) => setName(target.value)}
+            />
+          </div>
+          <div>
+            <div>phone</div>
+            <input
+              value={phone}
+              onChange={({ target }) => setPhone(target.value)}
+            />
+          </div>
         </div>
         <div>
-          phone{' '}
-          <input
-            value={phone}
-            onChange={({ target }) => setPhone(target.value)}
-          />
+          <div>
+            <div>street</div>
+            <input
+              value={street}
+              onChange={({ target }) => setStreet(target.value)}
+            />
+          </div>
+          <div>
+            <div>city</div>
+            <input
+              value={city}
+              onChange={({ target }) => setCity(target.value)}
+            />
+          </div>
         </div>
-        <div>
-          street{' '}
-          <input
-            value={street}
-            onChange={({ target }) => setStreet(target.value)}
-          />
-        </div>
-        <div>
-          city{' '}
-          <input
-            value={city}
-            onChange={({ target }) => setCity(target.value)}
-          />
-        </div>
-        <button type="submit">add!</button>
+        <button type="submit">aggiungi</button>
       </form>
     </div>
   );

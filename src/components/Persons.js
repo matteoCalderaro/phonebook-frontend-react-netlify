@@ -47,7 +47,7 @@ const Persons = ({ persons, setError, show, setPage, page }) => {
             id="contact"
             key={index}
             style={{
-              borderBottom: '1px solid',
+              borderBottom: 'dotted 1px #0b0a0a',
               paddingBottom: '8px',
             }}
           >
@@ -62,18 +62,13 @@ const Persons = ({ persons, setError, show, setPage, page }) => {
               </h3>
 
               <div>phone: {p.phone ? p.phone : 'nessun telefono'}</div>
-              <div>
-                address: {p.address.street}, {p.address.city}
-              </div>
+              <div>address: {p.address.street}</div>
+              <div>city: {p.address.city}</div>
             </div>
 
-            <div>
-              <button
-                style={{ marginRight: 5 }}
-                onClick={() => setNameToSearch(p.name)}
-              >
-                modifica
-              </button>
+            <div class="buttons">
+              <button onClick={() => setNameToSearch(p.name)}>modifica</button>
+
               <button onClick={() => setNameToSearch(p.name)}>elimina</button>
             </div>
           </div>

@@ -1,33 +1,64 @@
+html{
+  font-family: 'Source Sans Pro', sans-serif;
+}
+body {
+  margin-top:0;
+}
+#root{
+  max-width:500px;
+  margin:auto;
+  /* box-shadow: 5px 6px 3px -2px rgba(13,13,11,0.27); */
+ 
+
+}
 #navbar{
-  position: fixed;
-  background-color: blue;
+  position: sticky;
+  /* background: linear-gradient(135deg, #FEFFFF 0%, #EDF1F3 50%, #FDFCFD 100%); */
+  background-color: black;
   z-index: 50000;
-  width: 100%;
   padding: 10px;
   top:0;
-  left:0
 }
+/************* PERSON FORM **********/
 #personForm{
-  position: fixed;
-  background-color: lightgray;
+  position: sticky;
+  background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
   z-index: 1000;
-  width: 100%;
-  margin-top: 20px;
+  top: 43px;
   padding: 10px;
   left:0
 }
+#personForm > h2 {
+  margin-top:0
+}
+#personForm  form  div > div {
+  display:flex;
+  justify-content: space-between
+}
+#personForm  form  {
+  width: 240px;
+}
+#personForm  input  {
+  width: 180px;
+  margin-bottom:3px
+}
+/************* PERSON LIST **********/
 #personsList{
   padding: 10px;
-  margin-top: 230px;
-  position: absolute;
-  width:450px; 
-  left:0
+  position: relative;
+  left:0;
+  background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
 }
+#personsList .buttons button{
+  margin:0 5px;
+  width:60px
+}
+
 #friendsList{
   position:absolute;
   padding: 10px;
   width: max-content;
-  margin-top: 50px;
+  top: 50px;
 }
 #person{
   position: absolute;
@@ -36,11 +67,23 @@
   width: max-content
 }
 #notify{
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 #contact{
   padding-bottom: 8px;
 display: flex;
 justify-content: space-between;
 align-items: end;
+
+}
+
+
+
+@media screen and (max-width: 450px) {
+  #personsList .buttons{
+    display: flex;
+    flex-direction:column;
+    height: 52px;
+    justify-content: space-between;
+  }
 }

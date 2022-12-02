@@ -7,6 +7,7 @@ import Notify from './components/Notify';
 //import PhoneForm from './components/PhoneForm';
 import LoginForm from './components/LoginForm';
 import Friends from './components/Friends';
+import Navbar from './components/Navbar';
 
 function App() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -45,24 +46,8 @@ function App() {
 
   return (
     <>
+      <Navbar setPage={setPage} logout={logout} page={page} />
       <Notify errorMessage={errorMessage} />
-      <div id="navbar">
-        <button
-          style={{ marginRight: 10 }}
-          onClick={() => {
-            setPage('persons');
-          }}
-        >
-          tutti i contatti
-        </button>
-        <button style={{ marginRight: 10 }} onClick={() => setPage('amici')}>
-          amici
-        </button>
-        <button style={{ marginRight: 10 }} onClick={() => setPage('amici')}>
-          lavoro
-        </button>
-        <button onClick={logout}>logout</button>
-      </div>
       <Persons
         show={page === 'persons'}
         persons={result.data.allPersons}
