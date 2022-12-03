@@ -4,7 +4,7 @@ const Navbar = ({ setPage, logout, page }) => {
     textDecoration: 'underline',
     fontWeight: '600',
     marginRight: 20,
-    fontSize: 16,
+    fontSize: 15,
     cursor: 'pointer',
   };
   const isNotSelected = {

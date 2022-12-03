@@ -15,11 +15,9 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
     setValueInput('');
   }, [persons]);
 
-  // DA IMPLEMENTARE ICONA AMICI/LAVORO NELLA MAIN LIST---------------
-  // const amici = useQuery(USER);
-  // console.log('amici', amici.data.me.friends);
+  const amici = useQuery(USER);
 
-  // REMOVE_PERSON -------------------------
+  // REMOVE_PERSON ---------------------------------------------------
   const [removePerson] = useMutation(REMOVE_PERSON, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
   });
@@ -27,7 +25,7 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
     removePerson({ variables: { name } });
   };
 
-  // FIND PERSON ---------------------------
+  // FIND PERSON ----------------------------------------------------
   const [nameToSearch, setNameToSearch] = useState(null);
 
   const result = useQuery(FIND_PERSON, {
@@ -49,12 +47,11 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
       />
     );
   }
-
   if (!show) {
     return null;
   }
 
-  // FILTER ----------------
+  // FILTER ----------------------------------------------------------
   const searchPerson = value => {
     setValueInput(value);
     setPersonsToShow(
@@ -63,10 +60,17 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   };
   console.log('persons to show', personsToShow);
 
-  // SORT PERSONS ---------------------------
+  // SORT PERSONS -----------------------------------------------------
   const personsSorted = personsToShow.sort((a, b) =>
     a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
   );
+
+  // AMICI ATTUALI-----------------------------------------------------
+  if (amici.loading) {
+    return null;
+  }
+  const amiciAttuali = amici.data.me.friends.map(a => a.name);
+  console.log('amici attuali', amiciAttuali);
 
   return (
     <>
@@ -78,47 +82,70 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
           </button>
         </>
       ) : (
-        <div id="personsList">
+        <div>
           <div id="selectList">
-            cerca:
-            <input
-              value={valueInput}
-              id="selectInput"
-              onChange={({ target }) => searchPerson(target.value)}
-            />
-            <button id="buttonNewContact" onClick={() => setFormVisible(true)}>
-              NEW
-            </button>
+            <div>
+              <div>cerca:</div>
+              <input
+                value={valueInput}
+                id="selectInput"
+                onChange={({ target }) => searchPerson(target.value)}
+              />
+            </div>
+
+            <div>
+              <button
+                id="buttonNewContact"
+                onClick={() => setFormVisible(true)}
+              >
+                NEW
+              </button>
+            </div>
           </div>
-          {personsSorted.length === 0 ? (
-            <h2>nessun contatto inserito...</h2>
-          ) : (
-            <>
-              <h2>Contatti esistenti</h2>
-              {personsSorted.map((p, index) => (
-                <div id="contact" key={index}>
-                  <div>
-                    <h3>name: {p.name}</h3>
-                    <div>phone: {p.phone ? p.phone : 'nessun telefono'}</div>
-                    <div>street: {p.address.street}</div>
-                    <div>city: {p.address.city}</div>
-                  </div>
-                  <div id="buttons">
-                    <button
-                      onClick={() => {
-                        setNameToSearch(p.name);
-                        setPersonsToShow(persons);
-                        setValueInput('');
-                      }}
-                    >
-                      modifica
-                    </button>
-                    <button onClick={() => remove(p.name)}>elimina</button>
-                  </div>
+          <div id="headerPersonsList">
+            <h2>Contatti esistenti</h2>
+          </div>
+          <div id="personsList">
+            {personsSorted.length === 0 ? (
+              <h2>nessun contatto inserito...</h2>
+            ) : (
+              <div>
+                <div>
+                  {personsSorted.map((p, index) => (
+                    <div id="contact" key={index}>
+                      <div>
+                        <h3>name: {p.name}</h3>
+                        <div>
+                          phone: {p.phone ? p.phone : 'nessun telefono'}
+                        </div>
+                        <div>street: {p.address.street}</div>
+                        <div>city: {p.address.city}</div>
+                      </div>
+                      <div id="buttonsAndIcons">
+                        <div id="icons">
+                          {amiciAttuali.includes(p.name) && <div>amico</div>}
+                        </div>
+                        <div id="buttons">
+                          <button
+                            onClick={() => {
+                              setNameToSearch(p.name);
+                              setPersonsToShow(persons);
+                              setValueInput('');
+                            }}
+                          >
+                            modifica
+                          </button>
+                          <button onClick={() => remove(p.name)}>
+                            elimina
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
