@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
 import { ALL_PERSONS } from '../queries';
 
-const PersonDetailTab2 = ({ setError, name }) => {
-  const [newName, setNewName] = useState('');
-  const [phone, setPhone] = useState('');
+const PersonDetailTab2 = ({ setError, person }) => {
+  console.log(person);
+  const [newPhone, setNewPhone] = useState('');
+  const [newStreet, setNewStreet] = useState('');
+  const [newCity, setNewCity] = useState('');
 
-  const [changeNumber] = useMutation(EDIT_NUMBER, {
+  const [changeContact] = useMutation(EDIT_NUMBER, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
     onError: error => {
       setError(error.graphQLErrors[0].message);
@@ -16,11 +18,12 @@ const PersonDetailTab2 = ({ setError, name }) => {
 
   const submit = event => {
     event.preventDefault();
+    changeContact({
+      variables: { name: person.name, newPhone, newStreet, newCity },
+    });
 
-    changeNumber({ variables: { name, newName, phone } });
-
-    //setName('');
-    setPhone('');
+    // setNewName('');
+    // setPhone('');
   };
   // ???????????
   // useEffect(() => {
@@ -34,21 +37,28 @@ const PersonDetailTab2 = ({ setError, name }) => {
     <div id="personDetailTab2">
       <h4>Modifica dati contatto</h4>
       <form onSubmit={submit}>
-        {/* <div>
-          name <input value={name} />
-        </div> */}
         <div>
-          newName{' '}
+          <div>phone:</div>
           <input
-            value={newName}
-            onChange={({ target }) => setNewName(target.value)}
+            defaultValue={person.phone}
+            //value={phone}
+            onChange={({ target }) => setNewPhone(target.value)}
           />
         </div>
         <div>
-          phone{' '}
+          <div>street:</div>
           <input
-            value={phone}
-            onChange={({ target }) => setPhone(target.value)}
+            defaultValue={person.address.street}
+            //value={phone}
+            onChange={({ target }) => setNewStreet(target.value)}
+          />
+        </div>
+        <div>
+          <div>city:</div>
+          <input
+            defaultValue={person.address.city}
+            //value={phone}
+            onChange={({ target }) => setNewCity(target.value)}
           />
         </div>
         <button style={{ marginTop: '20px' }} type="submit">

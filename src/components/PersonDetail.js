@@ -4,6 +4,8 @@ import PersonDetailTab1 from './PersonDetailTab1';
 import PersonDetailTab2 from './PersonDetailTab2';
 
 const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
+  console.log(persons);
+  console.log(person);
   // CREAZIONE AMICO
   const [createFriend, result] = useMutation(CREATE_FRIEND, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
@@ -51,7 +53,7 @@ const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
           deleteFriend={deleteFriend}
           addFriend={addFriend}
         />
-        <PersonDetailTab2 setError={setError} name={person.name} />
+        <PersonDetailTab2 setError={setError} person={person} />
 
         <button id="closeButton" onClick={() => setNameToSearch(null)}>
           torna ai contatti

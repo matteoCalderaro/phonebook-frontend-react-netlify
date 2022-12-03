@@ -23,11 +23,21 @@ const PersonDetailTab1 = ({ person, isFriend, deleteFriend, addFriend }) => {
       <div>city: {person.address.city}</div>
       <div id="buttons">
         {isFriend ? (
-          <span style={isFriendStyle} onClick={() => deleteFriend(person.name)}>
+          <span
+            role="button"
+            tabIndex="0"
+            style={isFriendStyle}
+            onClick={() => deleteFriend(person.name)}
+          >
             amico
           </span>
         ) : (
-          <span style={isNotFriendStyle} onClick={() => addFriend(person.name)}>
+          <span
+            role="button"
+            tabIndex="0"
+            style={isNotFriendStyle}
+            onClick={() => addFriend(person.name)}
+          >
             amico
           </span>
         )}

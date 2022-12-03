@@ -111,10 +111,19 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const EDIT_NUMBER = gql`
-  mutation changeNumber($name: String!, $newName: String!, $phone: String!) {
-    editNumber(name: $name, newName: $newName, phone: $phone) {
+  mutation changeContact(
+    $name: String!
+    $newPhone: String!
+    $newStreet: String!
+    $newCity: String!
+  ) {
+    editContact(
+      name: $name
+      newPhone: $newPhone
+      newStreet: $newStreet
+      newCity: $newCity
+    ) {
       name
-
       phone
       id
       address {

@@ -20,6 +20,8 @@ const Navbar = ({ setPage, logout, page }) => {
     <div id="navbar">
       <div>
         <span
+          role="button"
+          tabIndex="0"
           style={page === 'persons' ? isSelected : isNotSelected}
           onClick={() => {
             setPage('persons');
@@ -28,6 +30,8 @@ const Navbar = ({ setPage, logout, page }) => {
           contatti
         </span>
         <span
+          role="button"
+          tabIndex="0"
           style={page === 'amici' ? isSelected : isNotSelected}
           onClick={() => {
             setPage('amici');
@@ -36,6 +40,8 @@ const Navbar = ({ setPage, logout, page }) => {
           amici
         </span>
         <span
+          role="button"
+          tabIndex="0"
           style={page === 'lavoro' ? isSelected : isNotSelected}
           onClick={() => {
             setPage('lavoro');
@@ -45,6 +51,8 @@ const Navbar = ({ setPage, logout, page }) => {
         </span>
       </div>
       <span
+        role="button"
+        tabIndex="0"
         style={page === 'logout' ? isSelected : isNotSelected}
         onClick={logout}
       >
