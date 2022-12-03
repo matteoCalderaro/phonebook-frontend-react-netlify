@@ -1,4 +1,11 @@
-const PersonDetailTab1 = ({ person, isFriend, deleteFriend, addFriend }) => {
+import EditPersonForm from './EditPersonForm';
+const EditPersonBox = ({
+  person,
+  isFriend,
+  deleteFriend,
+  addFriend,
+  setError,
+}) => {
   const isFriendStyle = {
     fontWeight: '700',
     borderRadius: '5px',
@@ -15,12 +22,8 @@ const PersonDetailTab1 = ({ person, isFriend, deleteFriend, addFriend }) => {
     border: '1px solid gray',
   };
   return (
-    <div id="personDetailTab1">
-      <h2>Modifica</h2>
-      <h3 style={{ marginBottom: 0 }}>name: {person.name}</h3>
-      <div>phone: {person.phone}</div>
-      <div>street: {person.address.street}</div>
-      <div>city: {person.address.city}</div>
+    <div id="editPersonBox">
+      <h4>Modifica dati contatto</h4>
       <div id="buttons">
         {isFriend ? (
           <span
@@ -51,8 +54,9 @@ const PersonDetailTab1 = ({ person, isFriend, deleteFriend, addFriend }) => {
           </span>
         )} */}
       </div>
+      <EditPersonForm setError={setError} person={person} />
     </div>
   );
 };
 
-export default PersonDetailTab1;
+export default EditPersonBox;

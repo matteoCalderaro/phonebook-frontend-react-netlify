@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
 import { ALL_PERSONS } from '../queries';
 
-const PersonDetailTab2 = ({ setError, person }) => {
+const EditPersonForm = ({ setError, person }) => {
   console.log(person);
   const [newPhone, setNewPhone] = useState('');
   const [newStreet, setNewStreet] = useState('');
@@ -34,8 +34,11 @@ const PersonDetailTab2 = ({ setError, person }) => {
   // }, [result.data]);
 
   return (
-    <div id="personDetailTab2">
-      <h4>Modifica dati contatto</h4>
+    <div id="editPersonForm">
+      <div id="name">
+        <span style={{ marginRight: 8 }}>name:</span>
+        <span>{person.name}</span>
+      </div>
       <form onSubmit={submit}>
         <div>
           <div>phone:</div>
@@ -69,4 +72,4 @@ const PersonDetailTab2 = ({ setError, person }) => {
   );
 };
 
-export default PersonDetailTab2;
+export default EditPersonForm;

@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { ALL_PERSONS, CREATE_FRIEND, REMOVE_FRIEND, USER } from '../queries';
-import PersonDetailTab1 from './PersonDetailTab1';
-import PersonDetailTab2 from './PersonDetailTab2';
+import EditPersonBox from './EditPersonBox.js';
+//import EditPersonTab2 from './EditPersonTab2';
 
-const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
+const EditPerson = ({ persons, person, setNameToSearch, show, setError }) => {
   console.log(persons);
   console.log(person);
   // CREAZIONE AMICO
@@ -45,22 +45,19 @@ const PersonDetail = ({ persons, person, setNameToSearch, show, setError }) => {
 
   if (!show) return null;
   return (
-    <div id="personDetailContainer">
-      <div id="personDetailBox">
-        <PersonDetailTab1
-          person={person}
-          isFriend={isFriend}
-          deleteFriend={deleteFriend}
-          addFriend={addFriend}
-        />
-        <PersonDetailTab2 setError={setError} person={person} />
-
-        <button id="closeButton" onClick={() => setNameToSearch(null)}>
-          torna ai contatti
-        </button>
-      </div>
+    <div id="editPersonContainer">
+      <EditPersonBox
+        person={person}
+        isFriend={isFriend}
+        deleteFriend={deleteFriend}
+        addFriend={addFriend}
+        setError={setError}
+      />
+      <button id="closeButton" onClick={() => setNameToSearch(null)}>
+        torna ai contatti
+      </button>
     </div>
   );
 };
 
-export default PersonDetail;
+export default EditPerson;

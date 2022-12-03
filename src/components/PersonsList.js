@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { FIND_PERSON, REMOVE_PERSON, ALL_PERSONS, USER } from '../queries';
 import MainForm from './MainForm';
-import PersonDetail from './PersonDetail';
+import EditPerson from './EditPerson';
 
 const PersonsList = ({ persons, setError, show, setPage, page }) => {
   console.log('all persons', persons);
@@ -36,7 +36,7 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   if (nameToSearch && result.data) {
     const person = result.data.findPerson;
     return (
-      <PersonDetail
+      <EditPerson
         persons={persons}
         person={person}
         setNameToSearch={setNameToSearch}
