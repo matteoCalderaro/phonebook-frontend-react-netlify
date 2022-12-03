@@ -16,6 +16,7 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   }, [persons]);
 
   const amici = useQuery(USER);
+  const colleghi = useQuery(USER);
 
   // REMOVE_PERSON ---------------------------------------------------
   const [removePerson] = useMutation(REMOVE_PERSON, {
@@ -72,6 +73,12 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   const amiciAttuali = amici.data.me.friends.map(a => a.name);
   console.log('amici attuali', amiciAttuali);
 
+  // COLLEGHI ATTUALI-----------------------------------------------------
+  if (colleghi.loading) {
+    return null;
+  }
+  const colleghiAttuali = colleghi.data.me.collegues.map(a => a.name);
+
   return (
     <>
       {formVisible ? (
@@ -124,6 +131,9 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
                       <div id="buttonsAndIcons">
                         <div id="icons">
                           {amiciAttuali.includes(p.name) && <div>amico</div>}
+                          {colleghiAttuali.includes(p.name) && (
+                            <div>collega</div>
+                          )}
                         </div>
                         <div id="buttons">
                           <button

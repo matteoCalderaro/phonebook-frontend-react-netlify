@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { USER } from '../queries';
 import PersonCard from './PersonCard';
 
-const Friends = ({ persons, show, setPage }) => {
+const Collegues = ({ persons, show, setPage }) => {
   const result = useQuery(USER);
   console.log(result);
 
@@ -13,8 +13,8 @@ const Friends = ({ persons, show, setPage }) => {
     return null;
   }
   console.log('tutti', persons);
-  console.log('amici', result.data.me.friends);
-  const contactsSorted = result.data.me.friends.sort((a, b) =>
+  console.log('amici', result.data.me.collegues);
+  const contactsSorted = result.data.me.collegues.sort((a, b) =>
     a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
   );
 
@@ -27,4 +27,4 @@ const Friends = ({ persons, show, setPage }) => {
   );
 };
 
-export default Friends;
+export default Collegues;

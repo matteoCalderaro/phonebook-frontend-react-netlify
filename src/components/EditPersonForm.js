@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
 import { ALL_PERSONS } from '../queries';
 
-const EditPersonForm = ({ setError, person }) => {
+const EditPersonForm = ({ setError, person, children }) => {
   console.log(person);
   const [newPhone, setNewPhone] = useState('');
   const [newStreet, setNewStreet] = useState('');
@@ -64,6 +64,8 @@ const EditPersonForm = ({ setError, person }) => {
             onChange={({ target }) => setNewCity(target.value)}
           />
         </div>
+        {/* buttons component */}
+        {children}
         <button style={{ marginTop: '20px' }} type="submit">
           salva
         </button>

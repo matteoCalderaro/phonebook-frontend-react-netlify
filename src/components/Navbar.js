@@ -32,9 +32,9 @@ const Navbar = ({ setPage, logout, page }) => {
         <span
           role="button"
           tabIndex="0"
-          style={page === 'amici' ? isSelected : isNotSelected}
+          style={page === 'friends' ? isSelected : isNotSelected}
           onClick={() => {
-            setPage('amici');
+            setPage('friends');
           }}
         >
           amici
@@ -42,9 +42,9 @@ const Navbar = ({ setPage, logout, page }) => {
         <span
           role="button"
           tabIndex="0"
-          style={page === 'lavoro' ? isSelected : isNotSelected}
+          style={page === 'collegues' ? isSelected : isNotSelected}
           onClick={() => {
-            setPage('lavoro');
+            setPage('collegues');
           }}
         >
           lavoro

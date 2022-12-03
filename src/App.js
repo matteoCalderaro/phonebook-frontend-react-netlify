@@ -8,6 +8,7 @@ import Notify from './components/Notify';
 import LoginForm from './components/LoginForm';
 import Friends from './components/Friends';
 import Navbar from './components/Navbar';
+import Collegues from './components/Collegues';
 
 function App() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -63,7 +64,12 @@ function App() {
 
       <Friends
         setPage={setPage}
-        show={page === 'amici'}
+        show={page === 'friends'}
+        persons={result.data.allPersons}
+      />
+      <Collegues
+        setPage={setPage}
+        show={page === 'collegues'}
         persons={result.data.allPersons}
       />
     </>

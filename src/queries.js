@@ -26,6 +26,14 @@ export const USER = gql`
           city
         }
       }
+      collegues {
+        name
+        phone
+        address {
+          street
+          city
+        }
+      }
     }
   }
 `;
@@ -93,11 +101,44 @@ export const CREATE_FRIEND = gql`
     }
   }
 `;
+export const CREATE_COLLEGUE = gql`
+  mutation createCollegue($name: String!) {
+    addAsCollegue(name: $name) {
+      username
+      id
+      collegues {
+        name
+        phone
+        id
+        address {
+          street
+          city
+        }
+      }
+    }
+  }
+`;
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($name: String!) {
     removeAsFriend(name: $name) {
       username
       friends {
+        name
+        phone
+        id
+        address {
+          street
+          city
+        }
+      }
+    }
+  }
+`;
+export const REMOVE_COLLEGUE = gql`
+  mutation removeCollegue($name: String!) {
+    removeAsCollegue(name: $name) {
+      username
+      collegues {
         name
         phone
         id

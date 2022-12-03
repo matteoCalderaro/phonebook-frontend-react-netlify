@@ -119,13 +119,20 @@ body {
   top: 90px;
   background: linear-gradient(235deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
   z-index: 1000;
-  padding: 2px 10px;
+  padding: 2px 10px 20px;
 }
 #headerPersonsList h2{
   margin: 0 0
 }
-
-
+/************* PERSON CARD **********/
+#personCard{
+  border-bottom: dotted 1px #0b0a0a;
+  padding-bottom: 8px;
+  width: 100%;
+}
+#personCard tr td:first-child{
+  width: 60px;
+}
 
 
 /************* PERSON LIST - CONTACT **********/
@@ -152,7 +159,7 @@ body {
 }
 
 /************* PERSON LIST **********/
-#friendsList{
+#listContainer{
   position:relative;
   padding: 10px;
   background:linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
@@ -168,7 +175,8 @@ body {
 }
 
 #editPersonBox #buttons {
-  padding:0
+  padding:0;
+  margin-top: 20px;
 }
 #editPersonBox #buttons span{
   margin-right: 10px;
