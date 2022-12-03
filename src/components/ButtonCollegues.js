@@ -20,7 +20,7 @@ const ButtonCollegues = ({
   isCollegue,
 }) => {
   return (
-    <div id="buttons">
+    <div id="buttonCollegue">
       {isCollegue ? (
         <span
           role="button"

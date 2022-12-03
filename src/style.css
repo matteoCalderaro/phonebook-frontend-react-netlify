@@ -174,11 +174,19 @@ body {
   height:100vh;
 }
 
-#editPersonBox #buttons {
+#editPersonBox  #buttonCollegue{
+  padding:0;
+  //margin-top: 20px;
+}
+#editPersonBox  #buttonCollegue span{
+  margin-right: 10px;
+  cursor: pointer;
+}
+#editPersonBox #buttonFriend {
   padding:0;
   margin-top: 20px;
 }
-#editPersonBox #buttons span{
+#editPersonBox #buttonFriend  span{
   margin-right: 10px;
   cursor: pointer;
 }

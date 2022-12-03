@@ -47,7 +47,7 @@ const Navbar = ({ setPage, logout, page }) => {
             setPage('collegues');
           }}
         >
-          lavoro
+          colleghi
         </span>
       </div>
       <span

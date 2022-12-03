@@ -66,7 +66,10 @@ const EditPersonForm = ({ setError, person, children }) => {
         </div>
         {/* buttons component */}
         {children}
-        <button style={{ marginTop: '20px' }} type="submit">
+        <button
+          style={{ marginTop: '20px', width: '150px', fontSize: '20px' }}
+          type="submit"
+        >
           salva
         </button>
       </form>

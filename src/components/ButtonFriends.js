@@ -15,7 +15,7 @@ const isNotFriendStyle = {
 };
 const ButtonFriends = ({ isFriend, deleteFriend, addFriend, person }) => {
   return (
-    <div id="buttons">
+    <div id="buttonFriend">
       {isFriend ? (
         <span
           role="button"
