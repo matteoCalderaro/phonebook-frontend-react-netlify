@@ -2,7 +2,7 @@ import { useApolloClient, useQuery } from '@apollo/client';
 //import PersonForm from './components/PersonForm';
 import PersonsList from './components/PersonsList';
 import { ALL_PERSONS } from './queries';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Notify from './components/Notify';
 //import PhoneForm from './components/PhoneForm';
 import LoginForm from './components/LoginForm';
@@ -18,15 +18,19 @@ function App() {
 
   const result = useQuery(ALL_PERSONS);
 
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setErrorMessage(null);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [errorMessage]);
+
   if (result.loading) {
     return <div>loading...</div>;
   }
 
   const notify = message => {
     setErrorMessage(message);
-    setTimeout(() => {
-      setErrorMessage(null);
-    }, 6000);
   };
 
   const logout = () => {

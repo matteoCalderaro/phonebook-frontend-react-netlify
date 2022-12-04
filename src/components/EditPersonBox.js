@@ -10,12 +10,17 @@ const EditPersonBox = ({
   addCollegue,
   deleteCollegue,
   isCollegue,
+  setNameToSearch,
 }) => {
   return (
     <div id="editPersonBox">
       <h4>Modifica dati contatto</h4>
 
-      <EditPersonForm setError={setError} person={person}>
+      <EditPersonForm
+        setError={setError}
+        person={person}
+        setNameToSearch={setNameToSearch}
+      >
         <ButtonFriends
           person={person}
           addFriend={addFriend}

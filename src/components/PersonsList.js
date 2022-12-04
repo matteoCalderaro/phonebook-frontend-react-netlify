@@ -83,9 +83,9 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
     <>
       {formVisible ? (
         <>
-          <MainForm setError={setError} />
+          <MainForm setError={setError} setFormVisible={setFormVisible} />
           <button onClick={() => setFormVisible(false)}>
-            torna ai contatti
+            esci senza salvare
           </button>
         </>
       ) : (

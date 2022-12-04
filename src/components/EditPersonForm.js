@@ -1,29 +1,37 @@
 import { useMutation } from '@apollo/client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { EDIT_NUMBER, USER } from '../queries';
 import { ALL_PERSONS } from '../queries';
 
-const EditPersonForm = ({ setError, person, children }) => {
-  console.log(person);
+const EditPersonForm = ({ setError, person, children, setNameToSearch }) => {
   const [newPhone, setNewPhone] = useState('');
   const [newStreet, setNewStreet] = useState('');
   const [newCity, setNewCity] = useState('');
+  //console.log('dati persona', person);
 
-  const [changeContact] = useMutation(EDIT_NUMBER, {
+  useEffect(() => {
+    setNewPhone(person.phone);
+    setNewStreet(person.address.street);
+    setNewCity(person.address.city);
+  }, [person.address.city, person.address.street, person.phone]);
+
+  const [changeContact, result] = useMutation(EDIT_NUMBER, {
     refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
     onError: error => {
       setError(error.graphQLErrors[0].message);
     },
+    onCompleted: () => {
+      //setError('Edited with success');
+      setNameToSearch(null);
+    },
   });
-
+  console.log('change contact', result.data);
   const submit = event => {
     event.preventDefault();
     changeContact({
       variables: { name: person.name, newPhone, newStreet, newCity },
     });
-
-    // setNewName('');
-    // setPhone('');
+    //setNameToSearch(null);
   };
   // ???????????
   // useEffect(() => {
@@ -70,7 +78,7 @@ const EditPersonForm = ({ setError, person, children }) => {
           style={{ marginTop: '20px', width: '150px', fontSize: '20px' }}
           type="submit"
         >
-          salva
+          salva e chiudi
         </button>
       </form>
     </div>

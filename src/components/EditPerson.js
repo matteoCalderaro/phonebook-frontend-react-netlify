@@ -92,10 +92,11 @@ const EditPerson = ({ persons, person, setNameToSearch, show, setError }) => {
         deleteCollegue={deleteCollegue}
         isCollegue={isCollegue}
         setError={setError}
+        setNameToSearch={setNameToSearch}
       />
-      <button id="closeButton" onClick={() => setNameToSearch(null)}>
+      {/* <button id="closeButton" onClick={() => setNameToSearch(null)}>
         torna ai contatti
-      </button>
+      </button> */}
     </div>
   );
 };

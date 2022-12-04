@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { CREATE_PERSON, ALL_PERSONS } from '../queries';
 
-const MainForm = ({ setError }) => {
+const MainForm = ({ setError, setFormVisible }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [street, setStreet] = useState('');
@@ -13,6 +13,9 @@ const MainForm = ({ setError }) => {
     // name must be unique
     onError: error => {
       setError(error.graphQLErrors[0].message);
+    },
+    onCompleted: () => {
+      setFormVisible(false);
     },
     //update cache concatenating the result of the useMutation
     update: (cache, response) => {
@@ -40,6 +43,7 @@ const MainForm = ({ setError }) => {
     setPhone('');
     setStreet('');
     setCity('');
+    //setFormVisible(false);
   };
 
   return (
@@ -78,7 +82,7 @@ const MainForm = ({ setError }) => {
             />
           </div>
         </div>
-        <button type="submit">aggiungi</button>
+        <button type="submit">salva</button>
       </form>
     </div>
   );
