@@ -21,6 +21,7 @@ const EditPersonForm = ({ setError, person, children, setNameToSearch }) => {
     },
     onCompleted: () => {
       setNameToSearch(null);
+      setError('success');
     },
   });
   const submit = event => {
@@ -57,10 +58,7 @@ const EditPersonForm = ({ setError, person, children, setNameToSearch }) => {
             onChange={({ target }) => setNewCity(target.value)}
           />
         </div>
-        <button
-          style={{ marginTop: '20px', width: '80px', fontSize: '20px' }}
-          type="submit"
-        >
+        <button style={{ marginTop: '20px', fontSize: '15px' }} type="submit">
           salva
         </button>
       </form>

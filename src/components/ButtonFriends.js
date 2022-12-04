@@ -9,7 +9,7 @@ const isFriendStyle = {
 const isNotFriendStyle = {
   fontWeight: '700',
   borderRadius: '5px',
-  padding: '0 5px',
+  padding: '3px 7px',
   background: 'white',
   color: 'gray',
   border: '1px solid gray',

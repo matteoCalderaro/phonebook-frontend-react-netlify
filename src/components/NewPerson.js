@@ -17,7 +17,12 @@ const NewPerson = ({ setError, setFormVisible }) => {
       setError(error.graphQLErrors[0].message);
     },
     onCompleted: () => {
+      setError('success');
       setFormVisible(false);
+      setName('');
+      setPhone('');
+      setStreet('');
+      setCity('');
     },
     //update cache concatenating the result of the useMutation
     update: (cache, response) => {
@@ -41,10 +46,10 @@ const NewPerson = ({ setError, setFormVisible }) => {
       },
     });
 
-    setName('');
-    setPhone('');
-    setStreet('');
-    setCity('');
+    // setName('');
+    // setPhone('');
+    // setStreet('');
+    // setCity('');
     //setFormVisible(false);
   };
 
@@ -85,7 +90,7 @@ const NewPerson = ({ setError, setFormVisible }) => {
               />
             </div>
           </div>
-          <button style={{ marginTop: '30px' }} type="submit">
+          <button style={{ marginTop: '30px', fontSize: '15px' }} type="submit">
             salva
           </button>
         </form>

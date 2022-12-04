@@ -101,7 +101,11 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   const searchPerson = value => {
     setValueInput(value);
     setPersonsToShow(
-      persons.filter(p => p.name.toLowerCase().includes(value.toLowerCase()))
+      persons.filter(
+        p =>
+          p.name.toLowerCase().includes(value.toLowerCase()) ||
+          p.address.city.toLowerCase().includes(value.toLowerCase())
+      )
     );
   };
 
@@ -121,11 +125,12 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
     const bo = document.getElementById(`${id}`);
     bo.style.display = 'block';
   };
+
   const setVisibleNone = id => {
     const bo = document.getElementById(`${id}`);
     const timer = setTimeout(() => {
       bo.style.display = 'none';
-    }, 4000);
+    }, 2000);
     return () => clearTimeout(timer);
   };
   return (
@@ -135,7 +140,7 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
           <NewPerson setError={setError} setFormVisible={setFormVisible} />
         </>
       ) : (
-        <div>
+        <>
           <div id="selectList">
             <div>
               <div>cerca:</div>
@@ -160,32 +165,34 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
             {personsSorted.length === 0 ? (
               <h2>nessun contatto inserito...</h2>
             ) : (
-              <div>
-                <div>
-                  {personsSorted.map((p, index) => (
-                    <div id="contact" key={index}>
-                      <div>
-                        <h3>name: {p.name}</h3>
+              <>
+                {personsSorted.map((p, index) => (
+                  <div className="personCard" key={index}>
+                    <>
+                      <div className="personDetails">
                         <div>
-                          phone: {p.phone ? p.phone : 'nessun telefono'}
-                        </div>
-                        <div>street: {p.address.street}</div>
-                        <div>city: {p.address.city}</div>
-                      </div>
-                      <div id="labelsAndIcons">
-                        <div id="labels">
-                          {amiciAttuali.includes(p.name) && <div>amico</div>}
-                          {colleghiAttuali.includes(p.name) && (
-                            <div>collega</div>
-                          )}
+                          <h3>name: {p.name}</h3>
+                          <div>
+                            phone: {p.phone ? p.phone : 'nessun telefono'}
+                          </div>
+                          <div>street: {p.address.street}</div>
+                          <div>city: {p.address.city}</div>
+                          <div className="labels">
+                            {amiciAttuali.includes(p.name) && <div>amico</div>}
+                            {colleghiAttuali.includes(p.name) && (
+                              <div>collega</div>
+                            )}
+                          </div>
                         </div>
                         <div id="icons">
                           <FontAwesomeIcon
+                            style={{ cursor: 'pointer' }}
                             icon={faUser}
                             size="2x"
                             onClick={() => setVisible(p.id)}
                           />
                           <FontAwesomeIcon
+                            style={{ cursor: 'pointer' }}
                             icon={faEdit}
                             size="2x"
                             onClick={() => {
@@ -195,50 +202,54 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
                             }}
                           ></FontAwesomeIcon>
                           <FontAwesomeIcon
+                            style={{ cursor: 'pointer' }}
                             icon={faTrashCan}
                             size="2x"
-                            onClick={() => remove(p.name)}
+                            onClick={() => {
+                              remove(p.name);
+                              setVisibleNone(p.id);
+                            }}
                           ></FontAwesomeIcon>
                         </div>
                       </div>
-                      <div
-                        id={p.id}
-                        style={{
-                          display: 'none',
-                          width: '170px',
-                          height: '60px',
-                          position: 'absolute',
-                          right: '120px',
-                          bottom: '10px',
-                          borderRadius: '10px',
-                          border: '1px solid lightgray',
-                          background: 'white',
-                        }}
-                      >
-                        <div id="modalButtons">
-                          <ButtonFriends
-                            person={p}
-                            addFriend={addFriend}
-                            deleteFriend={deleteFriend}
-                            isFriend={amiciAttuali.includes(p.name)}
-                            setVisibleNone={setVisibleNone}
-                          />
-                          <ButtonCollegues
-                            person={p}
-                            addCollegue={addCollegue}
-                            deleteCollegue={deleteCollegue}
-                            isCollegue={colleghiAttuali.includes(p.name)}
-                            setVisibleNone={setVisibleNone}
-                          />
-                        </div>
+                    </>
+                    <div
+                      id={p.id}
+                      style={{
+                        display: 'none',
+                        width: '170px',
+                        height: '55px',
+                        position: 'absolute',
+                        right: '50px',
+                        top: '5px',
+                        borderRadius: '10px',
+                        border: '1px solid lightgray',
+                        background: 'white',
+                      }}
+                    >
+                      <div id="modalButtons">
+                        <ButtonFriends
+                          person={p}
+                          addFriend={addFriend}
+                          deleteFriend={deleteFriend}
+                          isFriend={amiciAttuali.includes(p.name)}
+                          setVisibleNone={setVisibleNone}
+                        />
+                        <ButtonCollegues
+                          person={p}
+                          addCollegue={addCollegue}
+                          deleteCollegue={deleteCollegue}
+                          isCollegue={colleghiAttuali.includes(p.name)}
+                          setVisibleNone={setVisibleNone}
+                        />
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                ))}
+              </>
             )}
           </div>
-        </div>
+        </>
       )}
     </>
   );
