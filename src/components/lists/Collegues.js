@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { USER } from '../queries';
+import { USER } from '../../queries';
 import PersonCard from './PersonCard';
 
 const Collegues = ({ persons, show, setPage }) => {
@@ -19,6 +19,13 @@ const Collegues = ({ persons, show, setPage }) => {
   );
 
   console.log(contactsSorted);
+
+  if (contactsSorted.length === 0)
+    return (
+      <div id="listContainer">
+        <div style={{ position: 'fixed' }}>nessun collega</div>
+      </div>
+    );
 
   return (
     <div id="listContainer">

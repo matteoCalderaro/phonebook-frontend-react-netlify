@@ -4,6 +4,7 @@ const isCollegueStyle = {
   padding: '3px 7px',
   background: 'gray',
   color: 'white',
+  cursor: 'pointer',
 };
 const isNotCollegueStyle = {
   fontWeight: '700',
@@ -12,12 +13,14 @@ const isNotCollegueStyle = {
   background: 'white',
   color: 'gray',
   border: '1px solid gray',
+  cursor: 'pointer',
 };
 const ButtonCollegues = ({
   person,
   addCollegue,
   deleteCollegue,
   isCollegue,
+  setVisibleNone,
 }) => {
   return (
     <div id="buttonCollegue">
@@ -26,7 +29,10 @@ const ButtonCollegues = ({
           role="button"
           tabIndex="0"
           style={isCollegueStyle}
-          onClick={() => deleteCollegue(person.name)}
+          onClick={() => {
+            deleteCollegue(person.name);
+            setVisibleNone(person.id);
+          }}
         >
           collega
         </span>
@@ -35,7 +41,10 @@ const ButtonCollegues = ({
           role="button"
           tabIndex="0"
           style={isNotCollegueStyle}
-          onClick={() => addCollegue(person.name)}
+          onClick={() => {
+            addCollegue(person.name);
+            setVisibleNone(person.id);
+          }}
         >
           collega
         </span>

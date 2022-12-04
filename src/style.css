@@ -54,31 +54,40 @@ body {
 }
 
 /************* PERSON FORM **********/
-#mainForm{
-  position: sticky;
-  background: linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
-  z-index: 1000;
-  top: 40px;
-  padding: 10px;
-  left:0
+#newPersonContainer{
+  padding: 0px;
+  background:linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
+  height:100vh;
+  position: absolute; 
+  width: 100%;
+  /* left: 0;
+  right: 0; */
+  top:0;
+  /* bottom:0 */
+  /* margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box; */
 }
-#mainForm > h2 {
+#newPersonContainer > h2 {
   margin-top:0
 }
-#mainForm  form  div > div {
+#newPersonContainer  form  div > div {
   display:flex;
   justify-content: space-between
 }
-#mainForm  form  {
+#newPersonContainer  form  {
   width: 240px;
 }
-#mainForm  input  {
+#newPersonContainer  input  {
   width: 180px;
   margin-bottom:3px
 }
+#newPersonBox {
+  padding:50px
+}
 /************* PERSON LIST **********/
 #personsList{
-  padding: 10px;
+  padding: 10px 20px;
   position: relative;
   left:0;
   background: linear-gradient(90deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
@@ -91,6 +100,8 @@ body {
 #personsList #contact{
   border-bottom: dotted 1px #0b0a0a;
   padding: 12px 0;
+  position:relative;
+  
 }
 /************* PERSON LIST - SELECT LIST **********/
 #selectList{
@@ -110,10 +121,15 @@ body {
   align-items:center;
 
 }
-#buttonNewContact{
-  right: 30px;
-  background:yellow;
-  padding:5px 15px
+#addButton{
+ 
+border-radius: 20px;
+font-sixe: 20px;
+/* background: green; */
+/* color: white; */
+width: 30px;
+height: 30px;
+//color: black
 }
 #headerPersonsList{
   position: sticky;
@@ -148,16 +164,36 @@ body {
   margin-bottom:5px
 /* align-items: flex-end; */
 }
-#buttonsAndIcons{
+#labelsAndIcons{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 }
-#icons div{
-  margin: 5px 5px;
+#labels {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+#labels div{
+  margin: 1px 5px;
   color:red
 }
+#icons {
+  min-width: 30px;
+}
+#icons svg:not(:last-child){
+  margin-right: 20px
+}
+#icons {
+  font-size:12px
+}
+#modalButtons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
 
 /************* PERSON LIST **********/
 #listContainer{
@@ -170,20 +206,25 @@ body {
 /************* PERSON  DETAIL**********/
 
 #editPersonContainer{
-  padding: 10px;
+  padding: 0px;
   background:linear-gradient(135deg, #DEE4DA 0%, #FDFCF9 62%, #E9E9E6 100%);
-  /* height:100vh; */
-  position: sticky;
-  /* width: 100%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
+  height:100vh;
+  position: absolute; 
+  width: 100%;
+  /* left: 0;
+  right: 0; */
+  top:0;
+  /* bottom:0 */
+  /* margin-left: auto;
   margin-right: auto;
   box-sizing: border-box; */
 }
-
+#editPersonBox {
+  padding: 50px;
+  //margin-top: 20px;
+}
 #editPersonBox  #buttonCollegue{
-  padding:0;
+  padding: 0px;
   //margin-top: 20px;
 }
 #editPersonBox  #buttonCollegue span{
@@ -228,7 +269,7 @@ body {
 
 
 @media screen and (max-width: 450px) {
-  #personsList #buttons{
+  #personsList #icons{
     display: flex;
     flex-direction:column;
     height: 52px;

@@ -3,12 +3,12 @@ import { useApolloClient, useQuery } from '@apollo/client';
 import PersonsList from './components/PersonsList';
 import { ALL_PERSONS } from './queries';
 import { useState, useEffect } from 'react';
-import Notify from './components/Notify';
+import Notify from './components/navigation/Notify';
 //import PhoneForm from './components/PhoneForm';
-import LoginForm from './components/LoginForm';
-import Friends from './components/Friends';
-import Navbar from './components/Navbar';
-import Collegues from './components/Collegues';
+import LoginForm from './components/navigation/LoginForm';
+import Friends from './components/lists/Friends';
+import Navbar from './components/navigation/Navbar';
+import Collegues from './components/lists/Collegues';
 
 function App() {
   const [errorMessage, setErrorMessage] = useState(null);

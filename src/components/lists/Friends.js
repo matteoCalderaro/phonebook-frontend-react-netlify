@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { USER } from '../queries';
+import { USER } from '../../queries';
 import PersonCard from './PersonCard';
 
 const Friends = ({ persons, show, setPage }) => {
@@ -18,7 +18,14 @@ const Friends = ({ persons, show, setPage }) => {
     a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
   );
 
-  console.log(contactsSorted);
+  console.log(result.data.me.friends);
+
+  if (contactsSorted.length === 0)
+    return (
+      <div id="listContainer">
+        <div style={{ position: 'fixed' }}>nessun amico</div>
+      </div>
+    );
 
   return (
     <div id="listContainer">

@@ -1,22 +1,74 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { FIND_PERSON, REMOVE_PERSON, ALL_PERSONS, USER } from '../queries';
-import MainForm from './MainForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faTrashCan,
+  faUser,
+} from '@fortawesome/free-regular-svg-icons';
+
+import {
+  FIND_PERSON,
+  REMOVE_PERSON,
+  ALL_PERSONS,
+  USER,
+  CREATE_FRIEND,
+  REMOVE_FRIEND,
+} from '../queries';
+import NewPerson from './NewPerson';
 import EditPerson from './EditPerson';
+import ButtonFriends from './ButtonFriends';
+import { CREATE_COLLEGUE, REMOVE_COLLEGUE } from './../queries';
+import ButtonCollegues from './ButtonCollegues';
 
 const PersonsList = ({ persons, setError, show, setPage, page }) => {
-  console.log('all persons', persons);
   const [formVisible, setFormVisible] = useState(false);
   const [personsToShow, setPersonsToShow] = useState(persons);
   const [valueInput, setValueInput] = useState('');
+  const [nameToSearch, setNameToSearch] = useState(null);
 
   useEffect(() => {
     setPersonsToShow(persons);
     setValueInput('');
   }, [persons]);
 
-  const amici = useQuery(USER);
-  const colleghi = useQuery(USER);
+  // QUERIES------------------------------------------
+  const friedsAndCollegues = useQuery(USER);
+
+  const personSearched = useQuery(FIND_PERSON, {
+    variables: { nameToSearch },
+    skip: !nameToSearch,
+  });
+
+  // AGGIUNGE AMICO------------------------------
+  const [createFriend] = useMutation(CREATE_FRIEND, {
+    refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
+  });
+  const addFriend = name => {
+    createFriend({ variables: { name } });
+  };
+  // RIMUOVE AMICO -----
+  const [removeFriend] = useMutation(REMOVE_FRIEND, {
+    refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
+  });
+  const deleteFriend = name => {
+    removeFriend({ variables: { name } });
+  };
+  // AGGIUNGI COLLEGA -----
+  const [createCollegue] = useMutation(CREATE_COLLEGUE, {
+    refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
+  });
+  const addCollegue = name => {
+    createCollegue({ variables: { name } });
+  };
+  // RIMUOVI COLLEGA -----
+  const [removeCollegue] = useMutation(REMOVE_COLLEGUE, {
+    refetchQueries: [{ query: ALL_PERSONS }, { query: USER }],
+  });
+  const deleteCollegue = name => {
+    removeCollegue({ variables: { name } });
+  };
 
   // REMOVE_PERSON ---------------------------------------------------
   const [removePerson] = useMutation(REMOVE_PERSON, {
@@ -27,15 +79,8 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
   };
 
   // FIND PERSON ----------------------------------------------------
-  const [nameToSearch, setNameToSearch] = useState(null);
-
-  const result = useQuery(FIND_PERSON, {
-    variables: { nameToSearch },
-    skip: !nameToSearch,
-  });
-
-  if (nameToSearch && result.data) {
-    const person = result.data.findPerson;
+  if (nameToSearch && personSearched.data) {
+    const person = personSearched.data.findPerson;
     return (
       <EditPerson
         persons={persons}
@@ -52,41 +97,42 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
     return null;
   }
 
-  // FILTER ----------------------------------------------------------
+  // SEARCH ----------------------------------------------------------
   const searchPerson = value => {
     setValueInput(value);
     setPersonsToShow(
       persons.filter(p => p.name.toLowerCase().includes(value.toLowerCase()))
     );
   };
-  console.log('persons to show', personsToShow);
 
-  // SORT PERSONS -----------------------------------------------------
+  // LIST SORT METHOD-----------------------------------------------------
   const personsSorted = personsToShow.sort((a, b) =>
     a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
   );
 
-  // AMICI ATTUALI-----------------------------------------------------
-  if (amici.loading) {
+  // RITORNA ARRAY AMICI & COLLEGHI-----------------------------------------
+  if (friedsAndCollegues.loading) {
     return null;
   }
-  const amiciAttuali = amici.data.me.friends.map(a => a.name);
-  console.log('amici attuali', amiciAttuali);
+  const amiciAttuali = friedsAndCollegues.data.me.friends.map(a => a.name);
+  const colleghiAttuali = friedsAndCollegues.data.me.collegues.map(a => a.name);
 
-  // COLLEGHI ATTUALI-----------------------------------------------------
-  if (colleghi.loading) {
-    return null;
-  }
-  const colleghiAttuali = colleghi.data.me.collegues.map(a => a.name);
-
+  const setVisible = id => {
+    const bo = document.getElementById(`${id}`);
+    bo.style.display = 'block';
+  };
+  const setVisibleNone = id => {
+    const bo = document.getElementById(`${id}`);
+    const timer = setTimeout(() => {
+      bo.style.display = 'none';
+    }, 4000);
+    return () => clearTimeout(timer);
+  };
   return (
     <>
       {formVisible ? (
         <>
-          <MainForm setError={setError} setFormVisible={setFormVisible} />
-          <button onClick={() => setFormVisible(false)}>
-            esci senza salvare
-          </button>
+          <NewPerson setError={setError} setFormVisible={setFormVisible} />
         </>
       ) : (
         <div>
@@ -100,14 +146,12 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
               />
             </div>
 
-            <div>
-              <button
-                id="buttonNewContact"
-                onClick={() => setFormVisible(true)}
-              >
-                NEW
-              </button>
-            </div>
+            <FontAwesomeIcon
+              id="addButton"
+              icon={faPlus}
+              size="1x"
+              onClick={() => setFormVisible(true)}
+            ></FontAwesomeIcon>
           </div>
           <div id="headerPersonsList">
             <h2>Contatti esistenti</h2>
@@ -128,26 +172,64 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
                         <div>street: {p.address.street}</div>
                         <div>city: {p.address.city}</div>
                       </div>
-                      <div id="buttonsAndIcons">
-                        <div id="icons">
+                      <div id="labelsAndIcons">
+                        <div id="labels">
                           {amiciAttuali.includes(p.name) && <div>amico</div>}
                           {colleghiAttuali.includes(p.name) && (
                             <div>collega</div>
                           )}
                         </div>
-                        <div id="buttons">
-                          <button
+                        <div id="icons">
+                          <FontAwesomeIcon
+                            icon={faUser}
+                            size="2x"
+                            onClick={() => setVisible(p.id)}
+                          />
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            size="2x"
                             onClick={() => {
                               setNameToSearch(p.name);
                               setPersonsToShow(persons);
                               setValueInput('');
                             }}
-                          >
-                            modifica
-                          </button>
-                          <button onClick={() => remove(p.name)}>
-                            elimina
-                          </button>
+                          ></FontAwesomeIcon>
+                          <FontAwesomeIcon
+                            icon={faTrashCan}
+                            size="2x"
+                            onClick={() => remove(p.name)}
+                          ></FontAwesomeIcon>
+                        </div>
+                      </div>
+                      <div
+                        id={p.id}
+                        style={{
+                          display: 'none',
+                          width: '170px',
+                          height: '60px',
+                          position: 'absolute',
+                          right: '120px',
+                          bottom: '10px',
+                          borderRadius: '10px',
+                          border: '1px solid lightgray',
+                          background: 'white',
+                        }}
+                      >
+                        <div id="modalButtons">
+                          <ButtonFriends
+                            person={p}
+                            addFriend={addFriend}
+                            deleteFriend={deleteFriend}
+                            isFriend={amiciAttuali.includes(p.name)}
+                            setVisibleNone={setVisibleNone}
+                          />
+                          <ButtonCollegues
+                            person={p}
+                            addCollegue={addCollegue}
+                            deleteCollegue={deleteCollegue}
+                            isCollegue={colleghiAttuali.includes(p.name)}
+                            setVisibleNone={setVisibleNone}
+                          />
                         </div>
                       </div>
                     </div>

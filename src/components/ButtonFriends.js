@@ -4,6 +4,7 @@ const isFriendStyle = {
   padding: '3px 7px',
   background: 'gray',
   color: 'white',
+  cursor: 'pointer',
 };
 const isNotFriendStyle = {
   fontWeight: '700',
@@ -12,8 +13,15 @@ const isNotFriendStyle = {
   background: 'white',
   color: 'gray',
   border: '1px solid gray',
+  cursor: 'pointer',
 };
-const ButtonFriends = ({ isFriend, deleteFriend, addFriend, person }) => {
+const ButtonFriends = ({
+  isFriend,
+  deleteFriend,
+  addFriend,
+  person,
+  setVisibleNone,
+}) => {
   return (
     <div id="buttonFriend">
       {isFriend ? (
@@ -21,7 +29,10 @@ const ButtonFriends = ({ isFriend, deleteFriend, addFriend, person }) => {
           role="button"
           tabIndex="0"
           style={isFriendStyle}
-          onClick={() => deleteFriend(person.name)}
+          onClick={() => {
+            deleteFriend(person.name);
+            setVisibleNone(person.id);
+          }}
         >
           amico
         </span>
@@ -30,7 +41,10 @@ const ButtonFriends = ({ isFriend, deleteFriend, addFriend, person }) => {
           role="button"
           tabIndex="0"
           style={isNotFriendStyle}
-          onClick={() => addFriend(person.name)}
+          onClick={() => {
+            addFriend(person.name);
+            setVisibleNone(person.id);
+          }}
         >
           amico
         </span>
