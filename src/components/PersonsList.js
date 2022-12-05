@@ -21,6 +21,7 @@ import EditPerson from './EditPerson';
 import ButtonFriends from './ButtonFriends';
 import { CREATE_COLLEGUE, REMOVE_COLLEGUE } from './../queries';
 import ButtonCollegues from './ButtonCollegues';
+import Footer from './navigation/Footer';
 
 const PersonsList = ({ persons, setError, show, setPage, page }) => {
   const [formVisible, setFormVisible] = useState(false);
@@ -171,12 +172,16 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
                     <>
                       <div className="personDetails">
                         <div>
-                          <h3>name: {p.name}</h3>
+                          <h3 style={{ marginBottom: '10px' }}>
+                            name: {p.name}
+                          </h3>
                           <div>
-                            phone: {p.phone ? p.phone : 'nessun telefono'}
+                            <div>
+                              phone: {p.phone ? p.phone : 'nessun telefono'}
+                            </div>
+                            <div>street: {p.address.street}</div>
+                            <div>city: {p.address.city}</div>
                           </div>
-                          <div>street: {p.address.street}</div>
-                          <div>city: {p.address.city}</div>
                           <div className="labels">
                             {amiciAttuali.includes(p.name) && <div>amico</div>}
                             {colleghiAttuali.includes(p.name) && (

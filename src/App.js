@@ -9,6 +9,7 @@ import LoginForm from './components/navigation/LoginForm';
 import Friends from './components/lists/Friends';
 import Navbar from './components/navigation/Navbar';
 import Collegues from './components/lists/Collegues';
+import Footer from './components/navigation/Footer';
 
 function App() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -76,6 +77,7 @@ function App() {
         show={page === 'collegues'}
         persons={result.data.allPersons}
       />
+      <Footer />
     </>
   );
 }

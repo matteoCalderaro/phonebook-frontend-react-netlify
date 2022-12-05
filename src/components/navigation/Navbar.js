@@ -53,7 +53,12 @@ const Navbar = ({ setPage, logout, page }) => {
       <span
         role="button"
         tabIndex="0"
-        style={page === 'logout' ? isSelected : isNotSelected}
+        style={{
+          color: 'white',
+          fontWeight: '600',
+          fontSize: 15,
+          cursor: 'pointer',
+        }}
         onClick={logout}
       >
         logout
