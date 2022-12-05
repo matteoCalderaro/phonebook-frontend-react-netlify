@@ -21,7 +21,6 @@ import EditPerson from './EditPerson';
 import ButtonFriends from './ButtonFriends';
 import { CREATE_COLLEGUE, REMOVE_COLLEGUE } from './../queries';
 import ButtonCollegues from './ButtonCollegues';
-import Footer from './navigation/Footer';
 
 const PersonsList = ({ persons, setError, show, setPage, page }) => {
   const [formVisible, setFormVisible] = useState(false);
