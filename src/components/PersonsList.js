@@ -158,12 +158,12 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
               onClick={() => setFormVisible(true)}
             ></FontAwesomeIcon>
           </div>
-          <div className="headerList" style={{ top: '90px' }}>
+          <div className="header" style={{ top: '90px' }}>
             <h2>Contatti esistenti</h2>
           </div>
-          <div className="personsList">
+          <div className="listContainer">
             {personsSorted.length === 0 ? (
-              <h2>nessun contatto inserito...</h2>
+              <h2 style={{ color: '#E9E9E6' }}>nessun contatto inserito...</h2>
             ) : (
               <>
                 {personsSorted.map((p, index) => (

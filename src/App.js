@@ -43,8 +43,10 @@ function App() {
   if (!token) {
     return (
       <>
-        <div id="navbarLogin">Phonebook 2022</div>
-        <div id="loginContainer">
+        <div className="navbar">
+          <div style={{ color: 'white' }}>Phonebook 2022</div>
+        </div>
+        <div className="standardContainer">
           <div id="loginForm">
             <Notify errorMessage={errorMessage} />
             <h2>Login</h2>

@@ -17,7 +17,7 @@ const Navbar = ({ setPage, logout, page }) => {
   };
 
   return (
-    <div id="navbar">
+    <div className="navbar">
       <div>
         <span
           role="button"

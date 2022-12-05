@@ -54,8 +54,8 @@ const NewPerson = ({ setError, setFormVisible }) => {
   };
 
   return (
-    <div id="newPersonContainer">
-      <div id="newPersonBox">
+    <div className="standardContainer">
+      <div className="newPersonBox">
         <h2>Inserisci nuovo contatto</h2>
         <form onSubmit={submit}>
           <div>

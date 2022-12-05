@@ -5,9 +5,9 @@ import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 const EditPerson = ({ person, setNameToSearch, show, setError }) => {
   if (!show) return null;
   return (
-    <div id="editPersonContainer">
-      <div id="editPersonBox">
-        <h4>Modifica dati contatto</h4>
+    <div className="standardContainer">
+      <div className="editPersonBox">
+        <h2>Modifica dati contatto</h2>
         <div id="editPersonForm">
           <EditPersonForm
             setError={setError}

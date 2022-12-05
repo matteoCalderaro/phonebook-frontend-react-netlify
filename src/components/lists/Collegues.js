@@ -23,21 +23,21 @@ const Collegues = ({ persons, show, setPage }) => {
   if (contactsSorted.length === 0)
     return (
       <>
-        <div className="headerList" style={{ top: '40px' }}>
+        <div className="header" style={{ top: '40px' }}>
           <h2>Colleghi</h2>
         </div>
-        <div className="personsList">
-          <div style={{ position: 'fixed' }}>nessun collega</div>
+        <div className="listContainer">
+          <h2 style={{ color: '#E9E9E6' }}>nessun collega inserito...</h2>
         </div>
       </>
     );
 
   return (
     <>
-      <div className="headerList" style={{ top: '40px' }}>
+      <div className="header" style={{ top: '40px' }}>
         <h2>Colleghi</h2>
       </div>
-      <div className="personsList">
+      <div className="listContainer">
         <PersonCard contactsSorted={contactsSorted} />
       </div>
     </>
