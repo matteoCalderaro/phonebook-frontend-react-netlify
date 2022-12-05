@@ -51,6 +51,7 @@ function App() {
             <LoginForm setToken={setToken} setError={notify} />
           </div>
         </div>
+        <Footer />
       </>
     );
   }
@@ -61,7 +62,7 @@ function App() {
       <Notify errorMessage={errorMessage} />
       <PersonsList
         show={page === 'persons'}
-        persons={result.data.allPersons}
+        persons={result?.data?.allPersons}
         setError={notify}
         setPage={setPage}
         page={page}
@@ -70,12 +71,12 @@ function App() {
       <Friends
         setPage={setPage}
         show={page === 'friends'}
-        persons={result.data.allPersons}
+        persons={result?.data?.allPersons}
       />
       <Collegues
         setPage={setPage}
         show={page === 'collegues'}
-        persons={result.data.allPersons}
+        persons={result?.data?.allPersons}
       />
       <Footer />
     </>

@@ -2,7 +2,7 @@ const PersonCard = ({ contactsSorted }) => {
   return (
     <>
       {contactsSorted.map((a, index) => (
-        <table id="personCard" key={index}>
+        <table className="personCard" key={index}>
           <tbody>
             <tr>
               <td style={{ fontWeight: 600 }}>name:</td>

@@ -1,6 +1,7 @@
 const styleError = {
   boxSizing: 'border-box',
   width: '100%',
+  maxWidth: 'inherit',
   color: 'red',
   border: '1px solid red',
   padding: '5px 10px',
@@ -21,6 +22,7 @@ const styleError = {
 const styleSuccees = {
   boxSizing: 'border-box',
   width: '100%',
+  maxWidth: 'inherit',
   color: 'green',
   border: '1px solid green',
   padding: '5px 10px',

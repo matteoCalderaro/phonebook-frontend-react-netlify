@@ -22,15 +22,25 @@ const Friends = ({ persons, show, setPage }) => {
 
   if (contactsSorted.length === 0)
     return (
-      <div id="listContainer">
-        <div style={{ position: 'fixed' }}>nessun amico</div>
-      </div>
+      <>
+        <div className="headerList" style={{ top: '40px' }}>
+          <h2>Amici</h2>
+        </div>
+        <div className="personsList">
+          <div style={{ position: 'fixed' }}>nessun amico</div>
+        </div>
+      </>
     );
 
   return (
-    <div id="listContainer">
-      <PersonCard contactsSorted={contactsSorted} />
-    </div>
+    <>
+      <div className="headerList" style={{ top: '40px' }}>
+        <h2>Amici</h2>
+      </div>
+      <div className="personsList">
+        <PersonCard contactsSorted={contactsSorted} />
+      </div>
+    </>
   );
 };
 

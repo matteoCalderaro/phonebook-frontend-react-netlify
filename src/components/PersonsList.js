@@ -158,10 +158,10 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
               onClick={() => setFormVisible(true)}
             ></FontAwesomeIcon>
           </div>
-          <div id="headerPersonsList">
+          <div className="headerList" style={{ top: '90px' }}>
             <h2>Contatti esistenti</h2>
           </div>
-          <div id="personsList">
+          <div className="personsList">
             {personsSorted.length === 0 ? (
               <h2>nessun contatto inserito...</h2>
             ) : (
@@ -171,15 +171,50 @@ const PersonsList = ({ persons, setError, show, setPage, page }) => {
                     <>
                       <div className="personDetails">
                         <div>
-                          <h3 style={{ marginBottom: '10px' }}>
-                            name: {p.name}
-                          </h3>
+                          <h3 style={{ marginBottom: '10px' }}>{p.name}</h3>
                           <div>
-                            <div>
-                              phone: {p.phone ? p.phone : 'nessun telefono'}
+                            <div style={{ display: 'flex' }}>
+                              <div
+                                style={{
+                                  marginBottom: '1px',
+                                  width: '56px',
+                                  fontStyle: 'italic',
+                                }}
+                              >
+                                phone:
+                              </div>
+                              <div style={{ fontWeight: 600 }}>
+                                {p.phone ? p.phone : 'nessun telefono'}
+                              </div>
                             </div>
-                            <div>street: {p.address.street}</div>
-                            <div>city: {p.address.city}</div>
+                            <div style={{ display: 'flex' }}>
+                              <div
+                                style={{
+                                  marginBottom: '1px',
+                                  width: '56px',
+                                  fontStyle: 'italic',
+                                }}
+                              >
+                                street:
+                              </div>
+                              <div style={{ fontWeight: 600 }}>
+                                {p.address.street}
+                              </div>
+                            </div>
+                            <div style={{ display: 'flex' }}>
+                              <div
+                                style={{
+                                  marginBottom: '1px',
+                                  width: '56px',
+                                  fontStyle: 'italic',
+                                }}
+                              >
+                                city:
+                              </div>
+                              <div style={{ fontWeight: 600 }}>
+                                {p.address.city}
+                              </div>
+                            </div>
                           </div>
                           <div className="labels">
                             {amiciAttuali.includes(p.name) && <div>amico</div>}
