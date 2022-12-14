@@ -30,14 +30,20 @@ const LoginForm = ({ setError, setToken }) => {
     <div>
       <form onSubmit={submit}>
         <div>
-          <div>username</div>
+          <div>
+            username:{' '}
+            <span style={{ color: 'red', fontStyle: 'italic' }}>michele</span>
+          </div>
           <input
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
         </div>
         <div>
-          <div>password</div>
+          <div>
+            password:{' '}
+            <span style={{ color: 'red', fontStyle: 'italic' }}>secret</span>
+          </div>
           <input
             type="password"
             value={password}
